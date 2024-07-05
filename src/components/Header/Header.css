@@ -1,0 +1,11 @@
+.header {
+    height: 80px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: space-between; /* Adjust as per your layout needs */
+    padding: 0 20px; /* Adds some padding on the sides */
+    box-sizing: border-box; /* Ensures padding is included in width */
+    color: #fdfdfd;
+    background-color: white;
+}
