@@ -1,6 +1,9 @@
 import { parse, format } from 'date-fns';
 
-import { CREATE_DATE_INPUT_FORMAT, CREATE_DATE_OUTPUT_FORMAT } from '../constants';
+import {
+	CREATE_DATE_INPUT_FORMAT,
+	CREATE_DATE_OUTPUT_FORMAT,
+} from '../constants';
 
 export const formatCreationDate = (date: string): string => {
 	// Parse the input date string using the date format
