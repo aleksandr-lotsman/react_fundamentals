@@ -1,0 +1,15 @@
+.empty-course-page {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+    text-align: center; /* Center-align the text */
+}
+
+.empty-course-page h2 {
+    margin: 0;
+}
+
+.empty-course-page button {
+    margin: 5px;
+}

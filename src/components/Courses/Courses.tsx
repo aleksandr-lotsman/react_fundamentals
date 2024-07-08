@@ -28,7 +28,7 @@ const Courses: React.FC<CoursesProps> = ({ coursesList, authorsList }) => {
 				<div className={'search-bar'}>SearchBar</div>
 				<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
 			</div>
-			<ul className='course-list'> {courses}</ul>
+			<ul className='course-list'>{courses}</ul>
 		</div>
 	);
 };
