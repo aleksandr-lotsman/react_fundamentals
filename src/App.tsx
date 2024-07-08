@@ -14,7 +14,7 @@ const defineMainPage = () => {
 	) : (
 		<EmptyCourseList />
 	);
-}
+};
 
 function App() {
 	return (
