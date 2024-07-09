@@ -1,44 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { Button } from '../../../../common/Button';
 
-import { BUTTON_TEXT_SHOW_COURSE } from '../../../../constants';
+import { BUTTON_TEXT_SHOW_COURSE, mockedAuthorsList } from '../../../../constants';
 
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../../../helpers/formatCreationDate';
+import { getCourseAuthorsNames } from '../../../../helpers/getCourseAuthorsNames';
+
 
 import './CourseCard.css';
+import {Course} from "../../../../types/Course";
 
+type Props = {
+	course: Course
+	setState: any
+}
 const CourseCard = ({
-	title,
-	duration,
-	creationDate,
-	description,
-	authors,
-}) => {
+	course,
+	setState
+}: Props) => {
 	return (
 		<div className='course-card'>
-			<h2>{title}</h2>
+			<h2>{course.title}</h2>
 			<div className='course-info'>
 				<div className='course-description'>
-					<p>{description}</p>
+					<p>{course.description}</p>
 				</div>
 				<div className='course-details'>
 					<div>
 						<p className='authors'>
 							<strong>Authors: </strong>
-							{authors}
+							{getCourseAuthorsNames(course.authors, mockedAuthorsList)}
 						</p>
 						<p>
 							<strong>Duration: </strong>
-							{getCourseDuration(duration)}
+							{getCourseDuration(course.duration)} hours
 						</p>
 						<p>
 							<strong>Created: </strong>
-							{formatCreationDate(creationDate)}
+							{formatCreationDate(course.creationDate)}
 						</p>
 					</div>
-					<Button className='show-course-btn' text={BUTTON_TEXT_SHOW_COURSE} />
+					<Button className='show-course-btn' text={BUTTON_TEXT_SHOW_COURSE}
+							onClick={() => setState(course.id)}/>
 				</div>
 			</div>
 		</div>

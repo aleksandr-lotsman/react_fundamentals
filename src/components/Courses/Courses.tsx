@@ -1,34 +1,40 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
 
 import CourseCard from './components/CourseCard/CourseCard';
 
-import { getCourseAuthorsNames } from '../../helpers/getCourseAuthorsNames';
-
 import { CoursesProps } from '../../types/CourseProps';
+
+
 
 import './Courses.css';
 import { Button } from '../../common/Button';
 import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
+import CourseInfo from "../CourseInfo/CourseInfo";
 
-const Courses: React.FC<CoursesProps> = ({ coursesList, authorsList }) => {
+const Courses = ({ coursesList }: CoursesProps) => {
+	const [selectedCourseId, setSelectedCourseId] = useState(null);
+
 	const courses = coursesList.map((course) => (
 		<li key={course.id}>
 			<CourseCard
-				title={course.title}
-				description={course.description}
-				creationDate={course.creationDate}
-				duration={course.duration}
-				authors={getCourseAuthorsNames(course.authors, authorsList)}
+				course={course}
+				setState={setSelectedCourseId}
 			/>
 		</li>
 	));
 	return (
 		<div className='courses-page'>
-			<div className={'top-bar'}>
-				<div className={'search-bar'}>SearchBar</div>
-				<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
-			</div>
-			<ul className='course-list'>{courses}</ul>
+			{selectedCourseId ?
+				<CourseInfo course={coursesList.find(course => course.id === selectedCourseId)}
+							setState={setSelectedCourseId}/>
+				: <>
+					<div className={'top-bar'}>
+						<div className={'search-bar'}>SearchBar</div>
+						<Button text={BUTTON_TEXT_ADD_NEW_COURSE}/>
+					</div>
+					<ul className='course-list'>{courses}</ul>
+				</>
+			}
 		</div>
 	);
 };

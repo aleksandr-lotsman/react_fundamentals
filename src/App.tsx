@@ -6,11 +6,11 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList';
 
-import { mockedAuthorsList, mockedCoursesList } from './constants';
+import {mockedCoursesList} from './constants';
 
 const defineMainPage = () => {
 	return mockedCoursesList.length !== 0 ? (
-		<Courses coursesList={mockedCoursesList} authorsList={mockedAuthorsList} />
+		<Courses coursesList={mockedCoursesList} />
 	) : (
 		<EmptyCourseList />
 	);

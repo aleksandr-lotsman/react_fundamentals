@@ -1,7 +1,5 @@
-import { Course } from './Course';
-import { Author } from './Author';
+import {Course} from './Course';
 
 export type CoursesProps = {
 	coursesList: Course[];
-	authorsList: Author[];
 };
