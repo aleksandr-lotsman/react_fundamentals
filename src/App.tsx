@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList';
 
-import {mockedCoursesList} from './constants';
+import { mockedCoursesList } from './constants';
 
 const defineMainPage = () => {
 	return mockedCoursesList.length !== 0 ? (

@@ -1,25 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { Button } from '../../../../common/Button';
 
-import { BUTTON_TEXT_SHOW_COURSE, mockedAuthorsList } from '../../../../constants';
+import {
+	BUTTON_TEXT_SHOW_COURSE,
+	mockedAuthorsList,
+} from '../../../../constants';
 
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../../../helpers/formatCreationDate';
 import { getCourseAuthorsNames } from '../../../../helpers/getCourseAuthorsNames';
 
-
 import './CourseCard.css';
-import {Course} from "../../../../types/Course";
+import { Course } from '../../../../types/Course';
 
 type Props = {
-	course: Course
-	setState: any
-}
-const CourseCard = ({
-	course,
-	setState
-}: Props) => {
+	course: Course;
+	setState: any;
+};
+const CourseCard = ({ course, setState }: Props) => {
 	return (
 		<div className='course-card'>
 			<h2>{course.title}</h2>
@@ -42,8 +41,11 @@ const CourseCard = ({
 							{formatCreationDate(course.creationDate)}
 						</p>
 					</div>
-					<Button className='show-course-btn' text={BUTTON_TEXT_SHOW_COURSE}
-							onClick={() => setState(course.id)}/>
+					<Button
+						className='show-course-btn'
+						text={BUTTON_TEXT_SHOW_COURSE}
+						onClick={() => setState(course.id)}
+					/>
 				</div>
 			</div>
 		</div>
