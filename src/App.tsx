@@ -7,12 +7,16 @@ import Courses from './components/Courses/Courses';
 
 import { mockedCoursesList, mockedAuthorsList } from './constants';
 
-
 function App() {
 	return (
 		<div className='app'>
 			<Header />
-			<div className={'main-page'}><Courses coursesList={mockedCoursesList} authorsList={mockedAuthorsList}/></div>
+			<div className={'main-page'}>
+				<Courses
+					coursesList={mockedCoursesList}
+					authorsList={mockedAuthorsList}
+				/>
+			</div>
 		</div>
 	);
 }

@@ -41,9 +41,7 @@ const CourseInfo = ({ course, setState }: Props) => {
 						<div>
 							<strong>Authors:</strong>
 						</div>
-						<div>
-							{course.authors.join(', ')}
-						</div>
+						<div>{course.authors.join(', ')}</div>
 					</div>
 				</div>
 			</div>

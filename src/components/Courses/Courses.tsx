@@ -8,12 +8,12 @@ import './Courses.css';
 import { Button } from '../../common/Button';
 import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
-import {getCoursesWithAuthorsNames} from "../../helpers/getCoursesWithAuthorsNames";
+import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
 
 const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [selectedCourseId, setSelectedCourseId] = useState(null);
 
-	const courses = getCoursesWithAuthorsNames(coursesList, authorsList)
+	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
 	const coursesCards = courses.map((course) => (
 		<li key={course.id}>
 			<CourseCard course={course} setState={setSelectedCourseId} />

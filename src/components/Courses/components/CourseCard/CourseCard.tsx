@@ -2,9 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../../common/Button';
 
-import {
-	BUTTON_TEXT_SHOW_COURSE,
-} from '../../../../constants';
+import { BUTTON_TEXT_SHOW_COURSE } from '../../../../constants';
 
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../../../helpers/formatCreationDate';
@@ -28,7 +26,7 @@ const CourseCard = ({ course, setState }: Props) => {
 					<div>
 						<p className='authors'>
 							<strong>Authors: </strong>
-							{course.authors.join(", ")}
+							{course.authors.join(', ')}
 						</p>
 						<p>
 							<strong>Duration: </strong>
