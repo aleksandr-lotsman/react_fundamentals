@@ -9,7 +9,7 @@ import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../helpers/formatCreationDate';
 import { getCourseAuthorsNames } from '../../helpers/getCourseAuthorsNames';
 
-import './CourseInfo.css'
+import './CourseInfo.css';
 
 type Props = {
 	course: Course;
@@ -22,26 +22,38 @@ const CourseInfo = ({ course, setState }: Props) => {
 			<h1>{course.title}</h1>
 			<div className={'course-info-container'}>
 				<h2>Description:</h2>
-				<div className={"course-info-details"}>
-					<div className={"course-info-description"}>{course.description}</div>
+				<div className={'course-info-details'}>
+					<div className={'course-info-description'}>{course.description}</div>
 					<div className={'course-details-grid'}>
-						<div><strong>ID:</strong></div>
+						<div>
+							<strong>ID:</strong>
+						</div>
 						<div>{course.id}</div>
-						<div><strong>Duration:</strong></div>
+						<div>
+							<strong>Duration:</strong>
+						</div>
 						<div>
 							<strong>{getCourseDuration(course.duration)}</strong> hours
 						</div>
-						<div><strong>Created:</strong></div>
+						<div>
+							<strong>Created:</strong>
+						</div>
 						<div>{formatCreationDate(course.creationDate)}</div>
-						<div><strong>Authors:</strong></div>
+						<div>
+							<strong>Authors:</strong>
+						</div>
 						<div>
 							{getCourseAuthorsNames(course.authors, mockedAuthorsList)}
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className={"bottom-bar"}>
-				<Button className={"back-btn"} text={BUTTON_TEXT_BACK} onClick={() => setState(null)} />
+			<div className={'bottom-bar'}>
+				<Button
+					className={'back-btn'}
+					text={BUTTON_TEXT_BACK}
+					onClick={() => setState(null)}
+				/>
 			</div>
 		</div>
 	);
