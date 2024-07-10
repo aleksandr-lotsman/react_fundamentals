@@ -9,9 +9,14 @@ import { Button } from '../../common/Button';
 import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
 import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
+import EmptyCourseList from "../EmptyCourseList/EmptyCourseList";
 
 const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [selectedCourseId, setSelectedCourseId] = useState(null);
+
+	if (coursesList.length === 0) {
+		return <EmptyCourseList/>
+	}
 
 	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
 	const coursesCards = courses.map((course) => (
