@@ -8,11 +8,13 @@ import './Courses.css';
 import { Button } from '../../common/Button';
 import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
+import {getCoursesWithAuthorsNames} from "../../helpers/getCoursesWithAuthorsNames";
 
-const Courses = ({ coursesList }: CoursesProps) => {
+const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [selectedCourseId, setSelectedCourseId] = useState(null);
 
-	const courses = coursesList.map((course) => (
+	const courses = getCoursesWithAuthorsNames(coursesList, authorsList)
+	const coursesCards = courses.map((course) => (
 		<li key={course.id}>
 			<CourseCard course={course} setState={setSelectedCourseId} />
 		</li>
@@ -21,7 +23,7 @@ const Courses = ({ coursesList }: CoursesProps) => {
 		<div className='courses-page'>
 			{selectedCourseId ? (
 				<CourseInfo
-					course={coursesList.find((course) => course.id === selectedCourseId)}
+					course={courses.find((course) => course.id === selectedCourseId)}
 					setState={setSelectedCourseId}
 				/>
 			) : (
@@ -30,7 +32,7 @@ const Courses = ({ coursesList }: CoursesProps) => {
 						<div className={'search-bar'}>SearchBar</div>
 						<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
 					</div>
-					<ul className='course-list'>{courses}</ul>
+					<ul className='course-list'>{coursesCards}</ul>
 				</>
 			)}
 		</div>

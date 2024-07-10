@@ -4,12 +4,10 @@ import { Button } from '../../../../common/Button';
 
 import {
 	BUTTON_TEXT_SHOW_COURSE,
-	mockedAuthorsList,
 } from '../../../../constants';
 
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../../../helpers/formatCreationDate';
-import { getCourseAuthorsNames } from '../../../../helpers/getCourseAuthorsNames';
 
 import './CourseCard.css';
 import { Course } from '../../../../types/Course';
@@ -30,7 +28,7 @@ const CourseCard = ({ course, setState }: Props) => {
 					<div>
 						<p className='authors'>
 							<strong>Authors: </strong>
-							{getCourseAuthorsNames(course.authors, mockedAuthorsList)}
+							{course.authors.join(", ")}
 						</p>
 						<p>
 							<strong>Duration: </strong>

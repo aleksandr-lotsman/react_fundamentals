@@ -2,12 +2,11 @@ import React from 'react';
 
 import { Button } from '../../common/Button';
 
-import { BUTTON_TEXT_BACK, mockedAuthorsList } from '../../constants';
+import { BUTTON_TEXT_BACK } from '../../constants';
 import { Course } from '../../types/Course';
 
 import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../helpers/formatCreationDate';
-import { getCourseAuthorsNames } from '../../helpers/getCourseAuthorsNames';
 
 import './CourseInfo.css';
 
@@ -43,7 +42,7 @@ const CourseInfo = ({ course, setState }: Props) => {
 							<strong>Authors:</strong>
 						</div>
 						<div>
-							{getCourseAuthorsNames(course.authors, mockedAuthorsList)}
+							{course.authors.join(', ')}
 						</div>
 					</div>
 				</div>
