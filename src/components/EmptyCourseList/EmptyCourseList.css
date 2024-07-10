@@ -1,9 +1,10 @@
 .empty-course-page {
     display: flex;
-    flex-direction: column; /* Arrange children in a column */
-    justify-content: center; /* Center children vertically */
-    align-items: center; /* Center children horizontally */
-    text-align: center; /* Center-align the text */
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .empty-course-page h2 {

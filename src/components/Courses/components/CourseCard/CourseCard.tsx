@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Button } from '../../../../common/Button';
 
@@ -22,7 +22,7 @@ const CourseCard = ({ course, setState }: Props) => {
 	return (
 		<div className='course-card'>
 			<h2>{course.title}</h2>
-			<div className='course-info'>
+			<div className='course-card-info'>
 				<div className='course-description'>
 					<p>{course.description}</p>
 				</div>
