@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Input } from '../../../../common/Input';
 import { Button } from '../../../../common/Button';
 import { BUTTON_TEXT_SEARCH } from '../../../../constants';
@@ -16,7 +16,7 @@ const SearchBar = ({ setState }) => {
 		if (event.target.value === '') {
 			setState('');
 		}
-		setSearchPhrase(event.target.value)
+		setSearchPhrase(event.target.value);
 	};
 
 	return (
