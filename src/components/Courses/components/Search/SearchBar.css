@@ -1,0 +1,15 @@
+.search-form {
+    display: flex;
+    gap: 16px;
+}
+
+.search-form label {
+    display: flex;
+}
+
+.search-form input {
+    border: 1px solid rgba(207, 207, 207, 1);
+    border-radius: 4px;
+    flex-grow: 1;
+    width: 400px;
+}

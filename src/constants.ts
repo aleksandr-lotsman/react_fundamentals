@@ -4,6 +4,7 @@ export const BUTTON_TEXT_LOGOUT = 'LOGOUT';
 export const BUTTON_TEXT_SHOW_COURSE = 'SHOW COURSE';
 export const BUTTON_TEXT_ADD_NEW_COURSE = 'ADD NEW COURSE';
 export const BUTTON_TEXT_BACK = 'BACK';
+export const BUTTON_TEXT_SEARCH = 'SEARCH';
 export const CREATE_DATE_INPUT_FORMAT = 'MM/dd/yyyy';
 export const CREATE_DATE_OUTPUT_FORMAT = 'dd.MM.yyyy';
 export const mockedCoursesList: Course[] = [

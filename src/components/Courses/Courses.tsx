@@ -10,20 +10,25 @@ import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
 import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
 import EmptyCourseList from "../EmptyCourseList/EmptyCourseList";
+import SearchBar from "./components/Search/SearchBar";
 
 const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [selectedCourseId, setSelectedCourseId] = useState(null);
+	const [query, setQuery] = useState('');
 
 	if (coursesList.length === 0) {
 		return <EmptyCourseList/>
 	}
 
 	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
-	const coursesCards = courses.map((course) => (
-		<li key={course.id}>
-			<CourseCard course={course} setState={setSelectedCourseId} />
-		</li>
-	));
+	const coursesCards = courses
+		.filter((course) => course.id.toLowerCase().includes(query.toLowerCase()) ||
+			course.title.toLowerCase().includes(query.toLowerCase()))
+		.map((course) => (
+			<li key={course.id}>
+				<CourseCard course={course} setState={setSelectedCourseId}/>
+			</li>
+		));
 	return (
 		<div className='courses-page'>
 			{selectedCourseId ? (
@@ -34,7 +39,9 @@ const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 			) : (
 				<>
 					<div className={'top-bar'}>
-						<div className={'search-bar'}>SearchBar</div>
+						<div className={'search-bar'}>
+							<SearchBar setState={setQuery} />
+						</div>
 						<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
 					</div>
 					<ul className='course-list'>{coursesCards}</ul>
