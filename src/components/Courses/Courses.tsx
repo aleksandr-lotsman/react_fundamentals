@@ -42,9 +42,7 @@ const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 			) : (
 				<>
 					<div className={'top-bar'}>
-						<div className={'search-bar'}>
 							<SearchBar setState={setQuery} />
-						</div>
 						<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
 					</div>
 					<ul className='course-list'>{coursesCards}</ul>
