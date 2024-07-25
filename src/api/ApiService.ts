@@ -1,10 +1,13 @@
-import {ApiResponse} from "../types/ApiResponse";
-import {User} from "../types/User";
-import {FormSubmitErrors} from "../types/FormSubmitErrors";
+import { ApiResponse } from '../types/ApiResponse';
+import { User } from '../types/User';
+import { FormSubmitErrors } from '../types/FormSubmitErrors';
 
 const BASE_URL = 'http://localhost:4000';
 
-export const register = async (userData: User, setErrors: (errors: FormSubmitErrors) => void) => {
+export const register = async (
+	userData: User,
+	setErrors: (errors: FormSubmitErrors) => void
+) => {
 	try {
 		const response = await fetch(`${BASE_URL}/register`, {
 			method: 'POST',
@@ -21,9 +24,12 @@ export const register = async (userData: User, setErrors: (errors: FormSubmitErr
 		console.error('User registration failed', e);
 		setErrors({ requestError: 'User registration failed' });
 	}
-}
+};
 
-export const login = async (userData: User, setErrors: (errors: FormSubmitErrors) => void) => {
+export const login = async (
+	userData: User,
+	setErrors: (errors: FormSubmitErrors) => void
+) => {
 	try {
 		const response = await fetch(`${BASE_URL}/login`, {
 			method: 'POST',
@@ -40,4 +46,4 @@ export const login = async (userData: User, setErrors: (errors: FormSubmitErrors
 		console.error('User log in failed', e);
 		setErrors({ requestError: 'User log in failed' });
 	}
-}
+};

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
-import {User} from "../../types/User";
+import { User } from '../../types/User';
 import { FormSubmitErrors } from '../../types/FormSubmitErrors';
 
-import {Input} from "../../common/Input";
-import {Button} from "../../common/Button";
+import { Input } from '../../common/Input';
+import { Button } from '../../common/Button';
 
 import './Login.css';
 
-import {isUserDataValid} from "../../helpers/isUserDataValid";
-import * as apiService from "../../api/ApiService";
+import { isUserDataValid } from '../../helpers/isUserDataValid';
+import * as apiService from '../../api/ApiService';
 
 const Login = () => {
 	const [userData, setUserDataData] = useState<User>({

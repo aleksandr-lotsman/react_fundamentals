@@ -1,7 +1,10 @@
-import {FormSubmitErrors} from "../types/FormSubmitErrors";
-import {User} from "../types/User";
+import { FormSubmitErrors } from '../types/FormSubmitErrors';
+import { User } from '../types/User';
 
-export const isUserDataValid = (userData: User, setErrors: (errors: FormSubmitErrors) => void ): boolean => {
+export const isUserDataValid = (
+	userData: User,
+	setErrors: (errors: FormSubmitErrors) => void
+): boolean => {
 	const newErrors: FormSubmitErrors = {};
 
 	Object.keys(userData).forEach((key) => {

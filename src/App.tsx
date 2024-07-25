@@ -6,9 +6,9 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 
 import { mockedCoursesList, mockedAuthorsList } from './constants';
-import {Navigate, Route, Routes} from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 import Registration from './components/Registration/Registration';
-import Login from "./components/Login/Login";
+import Login from './components/Login/Login';
 
 function App() {
 	return (
@@ -16,10 +16,7 @@ function App() {
 			<Header />
 			<div className={'main-page'}>
 				<Routes>
-					<Route
-						path="*"
-						element={<Navigate to="/login" />}
-					/>
+					<Route path='*' element={<Navigate to='/login' />} />
 					<Route path='/registration' element={<Registration />} />
 					<Route path='/login' element={<Login />} />
 					<Route

@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {Input} from '../../common/Input';
-import {User} from '../../types/User';
-import {FormSubmitErrors} from '../../types/FormSubmitErrors';
+import React, { useState } from 'react';
+import { Input } from '../../common/Input';
+import { User } from '../../types/User';
+import { FormSubmitErrors } from '../../types/FormSubmitErrors';
 
 import './Registration.css';
-import {Link, useNavigate} from 'react-router-dom';
-import {Button} from '../../common/Button';
-import {isUserDataValid} from "../../helpers/isUserDataValid";
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '../../common/Button';
+import { isUserDataValid } from '../../helpers/isUserDataValid';
 import * as apiService from '../../api/ApiService';
 
 const Registration = () => {
@@ -19,8 +19,8 @@ const Registration = () => {
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
-		setUserDataData({...userData, [e.target.name]: e.target.value});
-		setErrors({...errors, [e.target.name]: ''});
+		setUserDataData({ ...userData, [e.target.name]: e.target.value });
+		setErrors({ ...errors, [e.target.name]: '' });
 	};
 
 	const handleSubmit = async (e) => {
@@ -71,7 +71,7 @@ const Registration = () => {
 					onChange={handleChange}
 					error={errors.password}
 				/>
-				<Button type={'submit'} text={'REGISTER'}/>
+				<Button type={'submit'} text={'REGISTER'} />
 				<Link to={'/login'}>
 					If you have and account you may <strong>Login</strong>
 				</Link>
