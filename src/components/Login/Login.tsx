@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { User } from '../../types/User';
@@ -11,7 +11,7 @@ import './Login.css';
 
 import { isUserDataValid } from '../../helpers/isUserDataValid';
 import * as apiService from '../../api/ApiService';
-import {ApiResponse} from "../../types/ApiResponse";
+import { ApiResponse } from '../../types/ApiResponse';
 
 const Login = () => {
 	const token = JSON.parse(localStorage.getItem('token'));
@@ -31,7 +31,7 @@ const Login = () => {
 
 	useEffect(() => {
 		localStorage.setItem('token', JSON.stringify(userToken));
-	},[userToken])
+	}, [userToken]);
 
 	const handleChange = (e) => {
 		setUserDataData({ ...userData, [e.target.name]: e.target.value });
@@ -44,7 +44,10 @@ const Login = () => {
 			console.error('Invalid user data');
 			return;
 		}
-		const responseBody: ApiResponse = await apiService.login(userData, setErrors);
+		const responseBody: ApiResponse = await apiService.login(
+			userData,
+			setErrors
+		);
 		if (!responseBody.successful && responseBody.errors) {
 			const newErr = {};
 			responseBody.errors.forEach((msg) => {
