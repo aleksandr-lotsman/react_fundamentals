@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.css'
+import './Input.css';
 export const Input = (props) => (
 	<label className={`label ${props.className ?? ''}`}>
 		<span>{props.name}</span>

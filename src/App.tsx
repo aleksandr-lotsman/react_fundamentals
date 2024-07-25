@@ -6,8 +6,8 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 
 import { mockedCoursesList, mockedAuthorsList } from './constants';
-import {Route, Routes} from "react-router";
-import Registration from "./components/Registration/Registration";
+import { Route, Routes } from 'react-router';
+import Registration from './components/Registration/Registration';
 
 function App() {
 	return (
@@ -15,8 +15,16 @@ function App() {
 			<Header />
 			<div className={'main-page'}>
 				<Routes>
-					<Route path="/" element={<Courses coursesList={mockedCoursesList} authorsList={mockedAuthorsList} />} />
-					<Route path="/registration" element={<Registration />} />
+					<Route
+						path='/'
+						element={
+							<Courses
+								coursesList={mockedCoursesList}
+								authorsList={mockedAuthorsList}
+							/>
+						}
+					/>
+					<Route path='/registration' element={<Registration />} />
 				</Routes>
 			</div>
 		</div>
