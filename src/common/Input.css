@@ -1,0 +1,28 @@
+.input {
+    border: 1px solid rgba(207, 207, 207, 1);
+    border-radius: 4px;
+    padding: 13px 16px;
+    flex-grow: 1;
+    max-width: 286px;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    width: 286px;
+}
+
+.label span {
+    padding-top: 34px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: left;
+
+}
+
+.error {
+    color: red;
+    border-color: red;
+    max-width: 100%;
+}
