@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
-import { Input } from '../../common/Input';
-import { User } from '../../types/User';
+import React, {useState} from 'react';
+import {Input} from '../../common/Input';
+import {User} from '../../types/User';
+import {FormSubmitErrors} from '../../types/FormSubmitErrors';
 
 import './Registration.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '../../common/Button';
-import { BASE_URL } from '../../constants';
-
-type RegisterResponse = {
-	successful: boolean;
-	result?: string;
-	errors?: string[];
-};
-
-type Errors = {
-	name?: string;
-	email?: string;
-	password?: string;
-	requestError?: string;
-};
-
-const signInFields = ['name', 'email', 'password'];
+import {Link, useNavigate} from 'react-router-dom';
+import {Button} from '../../common/Button';
+import {isUserDataValid} from "../../helpers/isUserDataValid";
+import * as apiService from '../../api/ApiService';
 
 const Registration = () => {
 	const [userData, setUserDataData] = useState<User>({
@@ -28,56 +15,30 @@ const Registration = () => {
 		email: '',
 		password: '',
 	});
-	const [errors, setErrors] = useState<Errors>({});
+	const [errors, setErrors] = useState<FormSubmitErrors>({});
 	const navigate = useNavigate();
 
-	const isUserDataValid = (): boolean => {
-		const newErrors: Errors = {};
-
-		signInFields.forEach((field) => {
-			if (!userData[field]) {
-				newErrors[field] =
-					`${field.charAt(0).toUpperCase() + field.slice(1)} is required`;
-			}
-		});
-		setErrors(newErrors);
-		return Object.keys(newErrors).length === 0;
-	};
-
 	const handleChange = (e) => {
-		setUserDataData({ ...userData, [e.target.name]: e.target.value });
-		setErrors({ ...errors, [e.target.name]: '' });
+		setUserDataData({...userData, [e.target.name]: e.target.value});
+		setErrors({...errors, [e.target.name]: ''});
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!isUserDataValid()) {
+		if (!isUserDataValid(userData, setErrors)) {
 			console.error('Invalid user data');
 			return;
 		}
-		try {
-			const response = await fetch(`${BASE_URL}/register`, {
-				method: 'POST',
-				body: JSON.stringify(userData),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
 
-			const result: RegisterResponse = await response.json();
-			if (!result.successful && result.errors) {
-				const newErr = {};
-				result.errors.forEach((msg) => {
-					const key = msg.match(/'([^']+)'/)[1];
-					newErr[key] = msg.replace(`'${key}'`, '');
-				});
-				setErrors(newErr);
-				return;
-			}
-			console.log('User registered', result);
-		} catch (e) {
-			console.error('User registration failed', e);
-			setErrors({ ...errors, requestError: 'User registration failed' });
+		const result = await apiService.register(userData, setErrors);
+		if (!result.successful && result.errors) {
+			const newErr = {};
+			result.errors.forEach((msg) => {
+				const key = msg.match(/'([^']+)'/)[1];
+				newErr[key] = msg.replace(`'${key}'`, '');
+			});
+			setErrors(newErr);
+			return;
 		}
 		navigate('/login');
 	};
@@ -110,7 +71,7 @@ const Registration = () => {
 					onChange={handleChange}
 					error={errors.password}
 				/>
-				<Button type={'submit'} text={'REGISTER'} />
+				<Button type={'submit'} text={'REGISTER'}/>
 				<Link to={'/login'}>
 					If you have and account you may <strong>Login</strong>
 				</Link>

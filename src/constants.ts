@@ -7,8 +7,6 @@ export const BUTTON_TEXT_BACK = 'BACK';
 export const BUTTON_TEXT_SEARCH = 'SEARCH';
 export const CREATE_DATE_INPUT_FORMAT = 'MM/dd/yyyy';
 export const CREATE_DATE_OUTPUT_FORMAT = 'dd.MM.yyyy';
-
-export const BASE_URL = 'http://localhost:4000';
 export const mockedCoursesList: Course[] = [
 	{
 		id: 'de5aaa59-90f5-4dbc-b8a9-aaf205c551ba',

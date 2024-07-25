@@ -1,0 +1,26 @@
+.login {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #CFCFCF;
+    background-color: white;
+    border-radius: 3px;
+    padding-top: 50px;
+    padding-bottom: 61px;
+    align-items: center;
+    width: 585px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    margin-top: 34px;
+    margin-bottom: 37px;
+    width: 286px;
+}
