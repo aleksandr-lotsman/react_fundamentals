@@ -3,11 +3,11 @@ import React from 'react';
 import './Input.css';
 export const Input = (props) => (
 	<label className={`label ${props.className ?? ''}`}>
-		<span>{props.name}</span>
+		<span>{props.lable}</span>
 		<input
 			className={`input ${props.className ?? ''}`}
 			value={props.value}
-			name={props.name.toLowerCase()}
+			name={props.name}
 			type={props.type}
 			placeholder={props.placeholder}
 			onChange={props.onChange}

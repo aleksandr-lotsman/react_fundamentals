@@ -50,7 +50,8 @@ const Login = () => {
 			<form className='login-form' onSubmit={handleSubmit}>
 				<Input
 					className={`${errors.email ? 'error' : ''}`}
-					name='Email'
+					lable='Email'
+					name='email'
 					type='text'
 					placeholder='Your email'
 					onChange={handleChange}
@@ -58,7 +59,8 @@ const Login = () => {
 				/>
 				<Input
 					className={`${errors.password ? 'error' : ''}`}
-					name='Password'
+					lable='Password'
+					name='password'
 					type='password'
 					placeholder='Your password'
 					onChange={handleChange}

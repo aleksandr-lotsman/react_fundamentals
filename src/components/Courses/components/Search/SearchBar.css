@@ -5,6 +5,7 @@
 
 .search-form label {
     display: flex;
+    flex-direction: row;
 }
 
 .search-form input {

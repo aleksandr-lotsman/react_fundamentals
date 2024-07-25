@@ -49,7 +49,8 @@ const Registration = () => {
 			<form className='registration-form' onSubmit={handleSubmit}>
 				<Input
 					className={`${errors.name ? 'error' : ''}`}
-					name='Name'
+					name='name'
+					lable='Name'
 					type='text'
 					placeholder='Your name'
 					onChange={handleChange}
@@ -57,7 +58,8 @@ const Registration = () => {
 				/>
 				<Input
 					className={`${errors.email ? 'error' : ''}`}
-					name='Email'
+					name='email'
+					lable='Email'
 					type='text'
 					placeholder='Your email'
 					onChange={handleChange}
@@ -65,7 +67,8 @@ const Registration = () => {
 				/>
 				<Input
 					className={`${errors.password ? 'error' : ''}`}
-					name='Password'
+					name='password'
+					lable='Password'
 					type='password'
 					placeholder='Your password'
 					onChange={handleChange}
