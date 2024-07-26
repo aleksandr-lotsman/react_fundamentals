@@ -9,12 +9,13 @@ import { formatCreationDate } from '../../../../helpers/formatCreationDate';
 
 import './CourseCard.css';
 import { Course } from '../../../../types/Course';
+import {useNavigate} from "react-router-dom";
 
 type Props = {
 	course: Course;
-	setState: any;
 };
-const CourseCard = ({ course, setState }: Props) => {
+const CourseCard = ({ course }: Props) => {
+	const navigate = useNavigate();
 	return (
 		<div className='course-card'>
 			<h2>{course.title}</h2>
@@ -40,7 +41,7 @@ const CourseCard = ({ course, setState }: Props) => {
 					<Button
 						className='show-course-btn'
 						text={BUTTON_TEXT_SHOW_COURSE}
-						onClick={() => setState(course.id)}
+						onClick={() => navigate(`/courses/${course.id}`)}
 					/>
 				</div>
 			</div>

@@ -2,20 +2,28 @@ import React from 'react';
 
 import { Button } from '../../common/Button';
 
-import { BUTTON_TEXT_BACK } from '../../constants';
+import {BUTTON_TEXT_BACK, mockedCoursesList} from '../../constants';
 import { Course } from '../../types/Course';
 
 import { getCourseDuration } from '../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../helpers/formatCreationDate';
 
 import './CourseInfo.css';
+import {useNavigate, useParams} from "react-router-dom";
 
 type Props = {
 	course: Course;
 	setState: any;
 };
 
-const CourseInfo = ({ course, setState }: Props) => {
+const getCourse = (courseId: string): Course => {
+	return mockedCoursesList.find((course) => course.id === courseId);
+}
+
+const CourseInfo = () => {
+	const navigate = useNavigate();
+	let { courseId } = useParams();
+	let course: Course = getCourse(courseId);
 	return (
 		<div className={'course-info'}>
 			<h1>{course.title}</h1>
@@ -49,7 +57,7 @@ const CourseInfo = ({ course, setState }: Props) => {
 				<Button
 					className={'back-btn'}
 					text={BUTTON_TEXT_BACK}
-					onClick={() => setState(null)}
+					onClick={() => navigate('/courses')}
 				/>
 			</div>
 		</div>

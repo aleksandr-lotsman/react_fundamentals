@@ -19,7 +19,6 @@ const Login = () => {
 		email: '',
 		password: '',
 	});
-	const [userToken, setUserToken] = useState(token);
 	const [errors, setErrors] = useState<FormSubmitErrors>({});
 	const navigate = useNavigate();
 
@@ -28,10 +27,6 @@ const Login = () => {
 			navigate('/courses');
 		}
 	}, []);
-
-	useEffect(() => {
-		localStorage.setItem('token', JSON.stringify(userToken));
-	}, [userToken]);
 
 	const handleChange = (e) => {
 		setUserDataData({ ...userData, [e.target.name]: e.target.value });
@@ -58,7 +53,7 @@ const Login = () => {
 			return;
 		}
 		const token = responseBody.result;
-		setUserToken(token);
+		localStorage.setItem('token', JSON.stringify(token));
 		navigate('/courses');
 	};
 
