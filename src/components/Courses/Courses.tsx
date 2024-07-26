@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import CourseCard from './components/CourseCard/CourseCard';
 
-import {CoursesProps} from '../../types/CourseProps';
+import { CoursesProps } from '../../types/CourseProps';
 
 import './Courses.css';
-import {Button} from '../../common/Button';
-import {BUTTON_TEXT_ADD_NEW_COURSE} from '../../constants';
-import {getCoursesWithAuthorsNames} from '../../helpers/getCoursesWithAuthorsNames';
+import { Button } from '../../common/Button';
+import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
+import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList';
 import SearchBar from './components/Search/SearchBar';
 
-const Courses = ({coursesList, authorsList}: CoursesProps) => {
+const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [query, setQuery] = useState('');
 
 	if (coursesList.length === 0) {
@@ -33,8 +33,8 @@ const Courses = ({coursesList, authorsList}: CoursesProps) => {
 	return (
 		<div className='courses-page'>
 			<div className={'top-bar'}>
-				<SearchBar setState={setQuery}/>
-				<Button text={BUTTON_TEXT_ADD_NEW_COURSE}/>
+				<SearchBar setState={setQuery} />
+				<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
 			</div>
 			<ul className='course-list'>{coursesCards}</ul>
 		</div>

@@ -9,7 +9,7 @@ import { mockedCoursesList, mockedAuthorsList } from './constants';
 import { Navigate, Route, Routes } from 'react-router';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
-import CourseInfo from "./components/CourseInfo/CourseInfo";
+import CourseInfo from './components/CourseInfo/CourseInfo';
 
 function App() {
 	return (

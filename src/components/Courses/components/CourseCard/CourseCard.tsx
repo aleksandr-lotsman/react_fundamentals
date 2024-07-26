@@ -9,7 +9,7 @@ import { formatCreationDate } from '../../../../helpers/formatCreationDate';
 
 import './CourseCard.css';
 import { Course } from '../../../../types/Course';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
 	course: Course;
