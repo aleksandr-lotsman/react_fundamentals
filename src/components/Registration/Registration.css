@@ -19,6 +19,11 @@
     box-sizing: border-box;
 }
 
+.registration-form label {
+    width: 286px;
+    padding-top: 34px;
+}
+
 .registration-form button {
     margin-top: 34px;
     margin-bottom: 37px;

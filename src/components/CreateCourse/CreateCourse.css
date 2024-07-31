@@ -1,0 +1,28 @@
+.course-create-edit-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.course-create-edit-container {
+    padding: 42px 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.course-create-edit-container label {
+    padding-top: 24px;
+}
+
+.main-info-container h2 {
+    margin: 0;
+}
+
+.duration-container h2 {
+    margin: 0;
+}
+
+.authors-container {
+    display: flex;
+    justify-content: space-between;
+}

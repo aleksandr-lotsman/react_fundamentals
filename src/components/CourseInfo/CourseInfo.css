@@ -44,6 +44,8 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 36px;
+    padding-bottom: 36px;
+    gap: 20px;
 }
 
 .back-btn {

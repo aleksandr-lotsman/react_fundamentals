@@ -8,7 +8,7 @@ export const Button = (props) => (
 		onClick={props.onClick}
 		type={props.type}
 	>
-		{props.icon}
+		{props.icon && <img src={props.icon} alt="icon" />}
 		{props.text}
 	</button>
 );

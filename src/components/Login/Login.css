@@ -18,6 +18,10 @@
     width: 585px;
     box-sizing: border-box;
 }
+.login-form label {
+    width: 286px;
+    padding-top: 34px;
+}
 
 .login-form button {
     margin-top: 34px;

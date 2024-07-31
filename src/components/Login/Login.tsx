@@ -9,13 +9,13 @@ import { Button } from '../../common/Button';
 
 import './Login.css';
 
-import { isUserDataValid } from '../../helpers/isUserDataValid';
+import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
 
 const Login = () => {
 	const token = JSON.parse(localStorage.getItem('token'));
-	const [userData, setUserDataData] = useState<User>({
+	const [userData, setUserData] = useState<User>({
 		email: '',
 		password: '',
 	});
@@ -29,13 +29,13 @@ const Login = () => {
 	}, []);
 
 	const handleChange = (e) => {
-		setUserDataData({ ...userData, [e.target.name]: e.target.value });
+		setUserData({ ...userData, [e.target.name]: e.target.value });
 		setErrors({ ...errors, [e.target.name]: '' });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!isUserDataValid(userData, setErrors)) {
+		if (!isDataValid<User, FormSubmitErrors>(userData, setErrors)) {
 			console.error('Invalid user data');
 			return;
 		}
@@ -63,7 +63,7 @@ const Login = () => {
 			<form className='login-form' onSubmit={handleSubmit}>
 				<Input
 					className={`${errors.email ? 'error' : ''}`}
-					lable='Email'
+					label='Email'
 					name='email'
 					type='text'
 					placeholder='Your email'
@@ -72,7 +72,7 @@ const Login = () => {
 				/>
 				<Input
 					className={`${errors.password ? 'error' : ''}`}
-					lable='Password'
+					label='Password'
 					name='password'
 					type='password'
 					placeholder='Your password'

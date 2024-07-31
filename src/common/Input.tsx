@@ -3,7 +3,7 @@ import React from 'react';
 import './Input.css';
 export const Input = (props) => (
 	<label className={`label ${props.className ?? ''}`}>
-		<span>{props.lable}</span>
+		<span>{props.label}</span>
 		<input
 			className={`input ${props.className ?? ''}`}
 			value={props.value}

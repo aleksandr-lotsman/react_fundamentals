@@ -6,11 +6,11 @@ import { FormSubmitErrors } from '../../types/FormSubmitErrors';
 import './Registration.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../common/Button';
-import { isUserDataValid } from '../../helpers/isUserDataValid';
+import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 
 const Registration = () => {
-	const [userData, setUserDataData] = useState<User>({
+	const [userData, setUserData] = useState<User>({
 		name: '',
 		email: '',
 		password: '',
@@ -19,13 +19,13 @@ const Registration = () => {
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
-		setUserDataData({ ...userData, [e.target.name]: e.target.value });
+		setUserData({ ...userData, [e.target.name]: e.target.value });
 		setErrors({ ...errors, [e.target.name]: '' });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!isUserDataValid(userData, setErrors)) {
+		if (!isDataValid<User, FormSubmitErrors>(userData, setErrors)) {
 			console.error('Invalid user data');
 			return;
 		}
@@ -50,7 +50,7 @@ const Registration = () => {
 				<Input
 					className={`${errors.name ? 'error' : ''}`}
 					name='name'
-					lable='Name'
+					label='Name'
 					type='text'
 					placeholder='Your name'
 					onChange={handleChange}
@@ -59,7 +59,7 @@ const Registration = () => {
 				<Input
 					className={`${errors.email ? 'error' : ''}`}
 					name='email'
-					lable='Email'
+					label='Email'
 					type='text'
 					placeholder='Your email'
 					onChange={handleChange}

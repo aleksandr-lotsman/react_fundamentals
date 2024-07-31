@@ -10,9 +10,11 @@ import { BUTTON_TEXT_ADD_NEW_COURSE } from '../../constants';
 import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList';
 import SearchBar from './components/Search/SearchBar';
+import {useNavigate} from "react-router-dom";
 
 const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 	const [query, setQuery] = useState('');
+	const navigate = useNavigate();
 
 	if (coursesList.length === 0) {
 		return <EmptyCourseList />;
@@ -34,7 +36,7 @@ const Courses = ({ coursesList, authorsList }: CoursesProps) => {
 		<div className='courses-page'>
 			<div className={'top-bar'}>
 				<SearchBar setState={setQuery} />
-				<Button text={BUTTON_TEXT_ADD_NEW_COURSE} />
+				<Button text={BUTTON_TEXT_ADD_NEW_COURSE} onClick={() => navigate('/courses/add')}/>
 			</div>
 			<ul className='course-list'>{coursesCards}</ul>
 		</div>

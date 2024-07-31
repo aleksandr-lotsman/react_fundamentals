@@ -1,29 +1,32 @@
 import React from 'react';
 
-import { Button } from '../../common/Button';
+import {Button} from '../../common/Button';
 
-import { BUTTON_TEXT_BACK, mockedCoursesList } from '../../constants';
-import { Course } from '../../types/Course';
+import {BUTTON_TEXT_BACK} from '../../constants';
+import {Course} from '../../types/Course';
 
-import { getCourseDuration } from '../../helpers/getCourseDuration';
-import { formatCreationDate } from '../../helpers/formatCreationDate';
+import {getCourseDuration} from '../../helpers/getCourseDuration';
+import {formatCreationDate} from '../../helpers/formatCreationDate';
 
 import './CourseInfo.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import {getCoursesWithAuthorsNames} from "../../helpers/getCoursesWithAuthorsNames";
+import {Author} from "../../types/Author";
 
 type Props = {
-	course: Course;
-	setState: any;
+	coursesList: Course[];
+	authorsList: Author[];
 };
 
-const getCourse = (courseId: string): Course => {
-	return mockedCoursesList.find((course) => course.id === courseId);
+const getCourse = (courseId: string, coursesList: Course[]): Course => {
+	return coursesList.find((course) => course.id === courseId);
 };
 
-const CourseInfo = () => {
+const CourseInfo = ({coursesList, authorsList}: Props) => {
+	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
 	const navigate = useNavigate();
 	const { courseId } = useParams();
-	const course: Course = getCourse(courseId);
+	const course: Course = getCourse(courseId, courses);
 	return (
 		<div className={'course-info'}>
 			<h1>{course.title}</h1>
