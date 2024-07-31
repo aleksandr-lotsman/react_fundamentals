@@ -1,4 +1,4 @@
-export const isDataValid = <T, E> (
+export const isDataValid = <T, E>(
 	data: T,
 	setErrors: (errors: E) => void
 ): boolean => {
