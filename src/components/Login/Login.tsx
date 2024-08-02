@@ -53,7 +53,9 @@ const Login = () => {
 			return;
 		}
 		const token = responseBody.result;
+		const user: User = responseBody.user
 		localStorage.setItem('token', JSON.stringify(token));
+		localStorage.setItem('name', user.name);
 		navigate('/courses');
 	};
 
