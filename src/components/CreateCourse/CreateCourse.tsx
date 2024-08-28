@@ -13,7 +13,7 @@ import { CREATE_DATE_INPUT_FORMAT } from '../../constants';
 import { v4 as uuidv4 } from 'uuid';
 import { Author } from '../../types/Author';
 import { AuthorFormSubmitErrors } from '../../types/AuthorFormSubmitErrors';
-import {Textarea} from "../../common/Textarea";
+import { Textarea } from '../../common/Textarea';
 
 type CourseFormData = {
 	title: string;
@@ -25,7 +25,7 @@ type AuthorFormData = {
 	name: string;
 };
 
-const minSymbolsLength: number = 2;
+const minSymbolsLength = 2;
 
 const CreateCourse = ({
 	setCoursesList,
@@ -153,7 +153,9 @@ const CreateCourse = ({
 							type={'number'}
 							min={0}
 						/>
-						<span><strong>{getCourseDuration(courseData.duration)}</strong> hours </span>
+						<span>
+							<strong>{getCourseDuration(courseData.duration)}</strong> hours{' '}
+						</span>
 					</div>
 				</div>
 				<div className={'authors-container'}>
@@ -171,16 +173,19 @@ const CreateCourse = ({
 									minLength={minSymbolsLength}
 									type={'text'}
 								/>
-								<Button text={'CREATE AUTHOR'} type={'submit'}/>
+								<Button text={'CREATE AUTHOR'} type={'submit'} />
 							</div>
 						</form>
-					<ul>{getAuthorsItems(authors, false)}</ul>
+						<ul>{getAuthorsItems(authors, false)}</ul>
 					</div>
 					<div className={'course-authors'}>
 						<h2>Course Authors</h2>
-						<ul>{addedAuthors.length === 0
-							? <p>Authors list is empty</p>
-							: getAuthorsItems(addedAuthors, true)}
+						<ul>
+							{addedAuthors.length === 0 ? (
+								<p>Authors list is empty</p>
+							) : (
+								getAuthorsItems(addedAuthors, true)
+							)}
 						</ul>
 					</div>
 				</div>
@@ -191,10 +196,7 @@ const CreateCourse = ({
 					text={'CANCEL'}
 					onClick={() => navigate('/courses')}
 				/>
-				<Button
-					text={'CREATE COURSE'}
-					type={'submit'}
-				/>
+				<Button text={'CREATE COURSE'} type={'submit'} />
 			</div>
 		</form>
 	);
