@@ -11,18 +11,57 @@
 }
 
 .course-create-edit-container label {
-    padding-top: 24px;
+    padding-top: 15px;
 }
 
 .main-info-container h2 {
     margin: 0;
 }
 
+.main-info-container textarea {
+    height: 150px;
+}
+
 .duration-container h2 {
     margin: 0;
+    padding-top: 32px;
+}
+
+.duration-container label {
+    width: 40%;
+    padding-right: 10px;
+}
+
+.duration {
+    display: flex;
+}
+
+.duration span {
+    align-content: end;
 }
 
 .authors-container {
     display: flex;
     justify-content: space-between;
+}
+
+
+.authors-container ul {
+    padding: 0;
+}
+
+.create-author {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.create-author button {
+    width: 185px;
+    height: 43px;
+}
+
+.course-authors ul p {
+align-items: center;
+
 }

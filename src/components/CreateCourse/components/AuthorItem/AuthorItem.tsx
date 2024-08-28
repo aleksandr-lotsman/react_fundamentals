@@ -5,6 +5,8 @@ import { Button } from '../../../../common/Button';
 import AddAuthorIcon from './addAuthor.svg';
 import DeleteAuthorIcon from './deleteAuthor.svg';
 
+import './AuthorItem.css';
+
 const AuthorItem = ({
 	author,
 	isAddedToCourse,
@@ -30,14 +32,16 @@ const AuthorItem = ({
 	};
 	return (
 		<div className={'author-item'}>
-			<p>{author.name}</p>
+			<span>{author.name}</span>
 			{isAddedToCourse ? (
 				<Button
+					className={'add-remove-author-button'}
 					icon={DeleteAuthorIcon}
 					onClick={(e) => handleMoveAuthor(e, true)}
 				/>
 			) : (
 				<Button
+					className={'add-remove-author-button'}
 					icon={AddAuthorIcon}
 					onClick={(e) => handleMoveAuthor(e, false)}
 				/>

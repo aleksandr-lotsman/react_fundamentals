@@ -68,7 +68,7 @@ const Registration = () => {
 				<Input
 					className={`${errors.password ? 'error' : ''}`}
 					name='password'
-					lable='Password'
+					label='Password'
 					type='password'
 					placeholder='Your password'
 					onChange={handleChange}

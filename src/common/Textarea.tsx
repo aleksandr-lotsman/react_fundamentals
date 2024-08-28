@@ -1,18 +1,16 @@
 import React from 'react';
 
-import './Input.css';
-export const Input = (props) => (
+import './Textarea.css';
+export const Textarea = (props) => (
 	<label className={`label ${props.className ?? ''}`}>
 		<span>{props.label}</span>
-		<input
-			className={`input ${props.className ?? ''}`}
+		<textarea
+			className={`textarea ${props.className ?? ''}`}
 			value={props.value}
 			name={props.name}
-			type={props.type}
 			placeholder={props.placeholder}
 			onChange={props.onChange}
 			minLength={props.minLength}
-			min={props.min}
 		/>
 		{props.error && <div>{props.error}</div>}
 	</label>

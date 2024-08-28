@@ -1,0 +1,12 @@
+.author-item {
+    display: flex;
+    align-items: center;
+}
+
+.add-remove-author-button {
+    background-color: white;
+}
+
+.add-remove-author-button:hover {
+    background-color: gray;
+}

@@ -13,6 +13,7 @@ import { CREATE_DATE_INPUT_FORMAT } from '../../constants';
 import { v4 as uuidv4 } from 'uuid';
 import { Author } from '../../types/Author';
 import { AuthorFormSubmitErrors } from '../../types/AuthorFormSubmitErrors';
+import {Textarea} from "../../common/Textarea";
 
 type CourseFormData = {
 	title: string;
@@ -23,6 +24,8 @@ type CourseFormData = {
 type AuthorFormData = {
 	name: string;
 };
+
+const minSymbolsLength: number = 2;
 
 const CreateCourse = ({
 	setCoursesList,
@@ -80,7 +83,7 @@ const CreateCourse = ({
 		navigate('/courses');
 	};
 
-	const handleCreateAuthor = (e) => {
+	const handleCreateAuthor = async (e) => {
 		e.preventDefault();
 		if (
 			!isDataValid<AuthorFormData, AuthorFormSubmitErrors>(
@@ -112,7 +115,7 @@ const CreateCourse = ({
 	};
 
 	return (
-		<form className='course-create-edit-page'>
+		<form className='course-create-edit-page' onSubmit={handleCreateCourse}>
 			<h1>Course Edit/Create Page</h1>
 			<div className={'course-create-edit-container'}>
 				<div className={'main-info-container'}>
@@ -124,47 +127,61 @@ const CreateCourse = ({
 						placeholder={'Enter course title'}
 						onChange={handleChange}
 						error={courseFormErrors.title}
+						minLength={minSymbolsLength}
+						type={'text'}
 					/>
-					<Input
+					<Textarea
 						className={`${courseFormErrors.description ? 'error' : ''}`}
 						label={'Description'}
 						name={'description'}
 						placeholder={'Enter course description'}
 						onChange={handleChange}
 						error={courseFormErrors.description}
+						minLength={minSymbolsLength}
 					/>
 				</div>
 				<div className={'duration-container'}>
 					<h2>Duration</h2>
-					<Input
-						className={`${courseFormErrors.duration ? 'error' : ''}`}
-						label={'Duration'}
-						name={'duration'}
-						placeholder={'Enter course duration'}
-						onChange={handleChange}
-						error={courseFormErrors.duration}
-					/>
-					<strong>{getCourseDuration(courseData.duration)}</strong> hours
+					<div className={'duration'}>
+						<Input
+							className={`${courseFormErrors.duration ? 'error' : ''}`}
+							label={'Duration'}
+							name={'duration'}
+							placeholder={'Enter course duration'}
+							onChange={handleChange}
+							error={courseFormErrors.duration}
+							type={'number'}
+							min={0}
+						/>
+						<span><strong>{getCourseDuration(courseData.duration)}</strong> hours </span>
+					</div>
 				</div>
 				<div className={'authors-container'}>
-					<div className={'authors'}>
+					<div className={'all-authors'}>
 						<h2>Authors</h2>
-						<div>
-							<Input
-								className={`${authorFormErrors.name ? 'error' : ''}`}
-								label={'Author Name'}
-								name={'name'}
-								placeholder={'Enter author name'}
-								onChange={handleChange}
-								error={authorFormErrors.name}
-							/>
-							<Button text={'CREATE AUTHOR'} onClick={handleCreateAuthor} />
-						</div>
-						<ul>{getAuthorsItems(authors, false)}</ul>
+						<form onSubmit={handleCreateAuthor}>
+							<div className={'create-author'}>
+								<Input
+									className={`${authorFormErrors.name ? 'error' : ''}`}
+									label={'Author Name'}
+									name={'name'}
+									placeholder={'Enter author name'}
+									onChange={handleChange}
+									error={authorFormErrors.name}
+									minLength={minSymbolsLength}
+									type={'text'}
+								/>
+								<Button text={'CREATE AUTHOR'} type={'submit'}/>
+							</div>
+						</form>
+					<ul>{getAuthorsItems(authors, false)}</ul>
 					</div>
 					<div className={'course-authors'}>
 						<h2>Course Authors</h2>
-						<ul>{getAuthorsItems(addedAuthors, true)}</ul>
+						<ul>{addedAuthors.length === 0
+							? <p>Authors list is empty</p>
+							: getAuthorsItems(addedAuthors, true)}
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -177,7 +194,6 @@ const CreateCourse = ({
 				<Button
 					text={'CREATE COURSE'}
 					type={'submit'}
-					onClick={handleCreateCourse}
 				/>
 			</div>
 		</form>
