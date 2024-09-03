@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CourseCard from './components/CourseCard/CourseCard';
 
@@ -11,16 +11,42 @@ import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsN
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList';
 import SearchBar from './components/Search/SearchBar';
 import { useNavigate } from 'react-router-dom';
+import * as apiService from '../../api/ApiService';
+import { ApiResponse } from '../../types/ApiResponse';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveCoursesAction } from '../../store/courses/actions';
+import { Course } from '../../types/Course';
+import { getCourses } from '../../store/courses/selectors';
 
-const Courses = ({ coursesList, authorsList }: CoursesProps) => {
+const Courses = ({ authorsList }: CoursesProps) => {
 	const [query, setQuery] = useState('');
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const coursesFromDb = useSelector(getCourses);
 
-	if (coursesList.length === 0) {
+	useEffect(() => {
+		const fetchAndSaveCourses = async () => {
+			const responseBody: ApiResponse<Course[]> = await apiService.getCourses();
+			if (responseBody.successful) {
+				const courses: Course[] = responseBody.result.map((course) => ({
+					id: course.id,
+					title: course.title,
+					description: course.description,
+					creationDate: course.creationDate,
+					duration: course.duration,
+					authors: course.authors,
+				}));
+				dispatch(saveCoursesAction(courses));
+			}
+		};
+		fetchAndSaveCourses();
+	}, [dispatch]);
+
+	if (coursesFromDb.length === 0) {
 		return <EmptyCourseList />;
 	}
 
-	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
+	const courses = getCoursesWithAuthorsNames(coursesFromDb, authorsList);
 	const coursesCards = courses
 		.filter(
 			(course) =>

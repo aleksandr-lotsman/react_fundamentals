@@ -1,8 +1,10 @@
 import { User } from './User';
+import { Course } from './Course';
+import { Author } from './Author';
 
-export type ApiResponse = {
+export type ApiResponse<T = Course[] | Author[] | string> = {
 	successful: boolean;
-	result?: string;
+	result?: T;
 	user?: User;
 	errors?: string[];
 };

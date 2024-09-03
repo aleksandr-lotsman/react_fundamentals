@@ -12,9 +12,10 @@ import './CourseInfo.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
 import { Author } from '../../types/Author';
+import { useSelector } from 'react-redux';
+import { getCourses } from '../../store/courses/selectors';
 
 type Props = {
-	coursesList: Course[];
 	authorsList: Author[];
 };
 
@@ -22,8 +23,9 @@ const getCourse = (courseId: string, coursesList: Course[]): Course => {
 	return coursesList.find((course) => course.id === courseId);
 };
 
-const CourseInfo = ({ coursesList, authorsList }: Props) => {
-	const courses = getCoursesWithAuthorsNames(coursesList, authorsList);
+const CourseInfo = ({ authorsList }: Props) => {
+	const coursesFromDb = useSelector(getCourses);
+	const courses = getCoursesWithAuthorsNames(coursesFromDb, authorsList);
 	const navigate = useNavigate();
 	const { courseId } = useParams();
 	const course: Course = getCourse(courseId, courses);

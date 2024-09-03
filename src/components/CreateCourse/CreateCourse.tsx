@@ -14,6 +14,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Author } from '../../types/Author';
 import { AuthorFormSubmitErrors } from '../../types/AuthorFormSubmitErrors';
 import { Textarea } from '../../common/Textarea';
+import { useDispatch } from 'react-redux';
+import { addNewCourseAction } from '../../store/courses/actions';
 
 type CourseFormData = {
 	title: string;
@@ -28,11 +30,9 @@ type AuthorFormData = {
 const minSymbolsLength = 2;
 
 const CreateCourse = ({
-	setCoursesList,
 	setAuthorsList,
 	authorsList,
 }: {
-	setCoursesList: React.Dispatch<React.SetStateAction<Course[]>>;
 	setAuthorsList: React.Dispatch<React.SetStateAction<Author[]>>;
 	authorsList: Author[];
 }) => {
@@ -52,6 +52,7 @@ const CreateCourse = ({
 		useState<CourseFormSubmitErrors>({});
 	const [authorFormErrors, setAuthorFormErrors] =
 		useState<AuthorFormSubmitErrors>({});
+	const dispatch = useDispatch();
 
 	const handleChange = (e) => {
 		setCourseData({ ...courseData, [e.target.name]: e.target.value });
@@ -79,7 +80,7 @@ const CreateCourse = ({
 			duration: courseData.duration,
 			authors: addedAuthors.map((author) => author.id),
 		};
-		setCoursesList((prevCourses) => [...prevCourses, newCourse]);
+		dispatch(addNewCourseAction(newCourse));
 		navigate('/courses');
 	};
 
