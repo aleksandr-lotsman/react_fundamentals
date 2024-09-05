@@ -1,12 +1,12 @@
 import { ApiResponse } from '../types/ApiResponse';
 import { FormSubmitErrors } from '../types/FormSubmitErrors';
 import { Course } from '../types/Course';
-import {Author} from "../types/Author";
+import { Author } from '../types/Author';
 
 const BASE_URL = 'http://localhost:4000';
 
 export const register = async (
-	userData: {name: string, email: string, password: string},
+	userData: { name: string; email: string; password: string },
 	setErrors: (errors: FormSubmitErrors) => void
 ) => {
 	try {
@@ -28,7 +28,7 @@ export const register = async (
 };
 
 export const login = async (
-	userData:  {email: string, password: string},
+	userData: { email: string; password: string },
 	setErrors: (errors: FormSubmitErrors) => void
 ) => {
 	try {

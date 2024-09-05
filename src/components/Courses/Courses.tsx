@@ -14,13 +14,13 @@ import EmptyCourseList from '../EmptyCourseList/EmptyCourseList';
 import * as apiService from '../../api/ApiService';
 
 import { ApiResponse } from '../../types/ApiResponse';
-import {Author} from "../../types/Author";
+import { Author } from '../../types/Author';
 import { Course } from '../../types/Course';
 
 import { saveCoursesAction } from '../../store/courses/actions';
 import { getCourses } from '../../store/courses/selectors';
-import {getAuthors} from "../../store/authors/selectors";
-import {saveAuthorsAction} from "../../store/authors/actions";
+import { getAuthors } from '../../store/authors/selectors';
+import { saveAuthorsAction } from '../../store/authors/actions';
 
 const Courses = () => {
 	const [query, setQuery] = useState('');

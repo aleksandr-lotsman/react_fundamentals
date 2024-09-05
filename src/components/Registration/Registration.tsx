@@ -8,8 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../common/Button';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
-import {useDispatch} from "react-redux";
-import {loginUserAction} from "../../store/user/actions";
+import { useDispatch } from 'react-redux';
+import { loginUserAction } from '../../store/user/actions';
 
 type UserForm = {
 	name: string;
@@ -48,12 +48,14 @@ const Registration = () => {
 			setErrors(newErr);
 			return;
 		}
-		dispatch(loginUserAction({
-			isAuth: true,
-			name: result.user.name,
-			email: result.user.name,
-			token: result.result } as User
-		));
+		dispatch(
+			loginUserAction({
+				isAuth: true,
+				name: result.user.name,
+				email: result.user.name,
+				token: result.result,
+			} as User)
+		);
 		navigate('/login');
 	};
 

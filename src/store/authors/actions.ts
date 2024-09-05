@@ -1,12 +1,14 @@
-import {Author} from "../../types/Author";
-import {AuthorActionTypes} from "./types";
+import { Author } from '../../types/Author';
+import { AuthorActionTypes } from './types';
 
 type SaveAuthorsAction = {
 	type: AuthorActionTypes.SAVE_AUTHORS;
 	payload: Author[];
 };
 
-export const saveAuthorsAction = (authorsData: Author[]): SaveAuthorsAction => ({
+export const saveAuthorsAction = (
+	authorsData: Author[]
+): SaveAuthorsAction => ({
 	type: AuthorActionTypes.SAVE_AUTHORS,
 	payload: authorsData,
 });

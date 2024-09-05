@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 
@@ -10,7 +10,7 @@ import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import CourseInfo from './components/CourseInfo/CourseInfo';
 import CreateCourse from './components/CreateCourse/CreateCourse';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function App() {
 	const navigate = useNavigate();
@@ -30,20 +30,9 @@ function App() {
 					<Route path='*' element={<Navigate to='/login' />} />
 					<Route path='/registration' element={<Registration />} />
 					<Route path='/login' element={<Login />} />
-					<Route
-						path='/courses'
-						element={<Courses />}
-					/>
-					<Route
-						path='/courses/:courseId'
-						element={<CourseInfo />}
-					/>
-					<Route
-						path='/courses/add'
-						element={
-							<CreateCourse />
-						}
-					/>
+					<Route path='/courses' element={<Courses />} />
+					<Route path='/courses/:courseId' element={<CourseInfo />} />
+					<Route path='/courses/add' element={<CreateCourse />} />
 				</Routes>
 			</div>
 		</div>

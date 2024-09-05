@@ -1,5 +1,5 @@
-import {User} from "../../types/User";
-import {UserAction, UserActionTypes} from "./types";
+import { User } from '../../types/User';
+import { UserAction, UserActionTypes } from './types';
 
 const userInitialState: User = {
 	isAuth: false,
@@ -8,7 +8,10 @@ const userInitialState: User = {
 	token: '',
 };
 
-export const userReducer = (state = userInitialState, action: UserAction): User => {
+export const userReducer = (
+	state = userInitialState,
+	action: UserAction
+): User => {
 	switch (action.type) {
 		case UserActionTypes.LOGIN:
 			return {

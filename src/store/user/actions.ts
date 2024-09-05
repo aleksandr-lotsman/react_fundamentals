@@ -1,5 +1,5 @@
-import {UserActionTypes} from "./types";
-import {User} from "../../types/User";
+import { UserActionTypes } from './types';
+import { User } from '../../types/User';
 
 type LoginUserAction = {
 	type: UserActionTypes.LOGIN;

@@ -1,5 +1,5 @@
-import {Author} from "../../types/Author";
-import {AuthorActionTypes} from "./types";
+import { Author } from '../../types/Author';
+import { AuthorActionTypes } from './types';
 
 const authorsInitialState: Author[] = [];
 
