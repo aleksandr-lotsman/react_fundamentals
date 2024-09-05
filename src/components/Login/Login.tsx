@@ -13,9 +13,14 @@ import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
 
+type UserForm = {
+	email: string;
+	password: string;
+};
+
 const Login = () => {
 	const token = JSON.parse(localStorage.getItem('token'));
-	const [userData, setUserData] = useState<User>({
+	const [userData, setUserData] = useState<UserForm>({
 		email: '',
 		password: '',
 	});
@@ -35,7 +40,7 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!isDataValid<User, FormSubmitErrors>(userData, setErrors)) {
+		if (!isDataValid<UserForm, FormSubmitErrors>(userData, setErrors)) {
 			console.error('Invalid user data');
 			return;
 		}

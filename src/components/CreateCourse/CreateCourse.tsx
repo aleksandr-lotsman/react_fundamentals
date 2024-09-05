@@ -14,8 +14,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { Author } from '../../types/Author';
 import { AuthorFormSubmitErrors } from '../../types/AuthorFormSubmitErrors';
 import { Textarea } from '../../common/Textarea';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { addNewCourseAction } from '../../store/courses/actions';
+import {getAuthors} from "../../store/authors/selectors";
+import {addAuthorAction} from "../../store/authors/actions";
 
 type CourseFormData = {
 	title: string;
@@ -29,13 +31,8 @@ type AuthorFormData = {
 
 const minSymbolsLength = 2;
 
-const CreateCourse = ({
-	setAuthorsList,
-	authorsList,
-}: {
-	setAuthorsList: React.Dispatch<React.SetStateAction<Author[]>>;
-	authorsList: Author[];
-}) => {
+const CreateCourse = () => {
+	const authorsFromDb = useSelector(getAuthors)
 	const navigate = useNavigate();
 	const [courseData, setCourseData] = useState<CourseFormData>({
 		title: '',
@@ -45,7 +42,7 @@ const CreateCourse = ({
 	const [authorData, setAuthorData] = useState<AuthorFormData>({
 		name: '',
 	});
-	const [authors, setAuthors] = useState<Author[]>(authorsList);
+	const [authors, setAuthors] = useState<Author[]>(authorsFromDb);
 	const [addedAuthors, setAddedAuthors] = useState<Author[]>([]);
 
 	const [courseFormErrors, setCourseFormErrors] =
@@ -100,7 +97,7 @@ const CreateCourse = ({
 			name: authorData.name,
 		};
 		setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
-		setAuthorsList((prevAuthors) => [...prevAuthors, newAuthor]);
+		dispatch(addAuthorAction(newAuthor));
 	};
 
 	const getAuthorsItems = (authors: Author[], isAddedToCourse: boolean) => {

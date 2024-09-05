@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 
 import './App.css';
 
 import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 
-import { mockedAuthorsList } from './constants';
 import { Navigate, Route, Routes } from 'react-router';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import CourseInfo from './components/CourseInfo/CourseInfo';
 import CreateCourse from './components/CreateCourse/CreateCourse';
-import { Author } from './types/Author';
+import {useNavigate} from "react-router-dom";
 
 function App() {
-	const [authorsList, setAuthorsList] = useState<Author[]>(mockedAuthorsList);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (!token) {
+			navigate('/login');
+		}
+	}, []);
 
 	return (
 		<div className='app'>
@@ -26,19 +32,16 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route
 						path='/courses'
-						element={<Courses authorsList={authorsList} />}
+						element={<Courses />}
 					/>
 					<Route
 						path='/courses/:courseId'
-						element={<CourseInfo authorsList={authorsList} />}
+						element={<CourseInfo />}
 					/>
 					<Route
 						path='/courses/add'
 						element={
-							<CreateCourse
-								setAuthorsList={setAuthorsList}
-								authorsList={authorsList}
-							/>
+							<CreateCourse />
 						}
 					/>
 				</Routes>

@@ -8,15 +8,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../common/Button';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
+import {useDispatch} from "react-redux";
+import {loginUserAction} from "../../store/user/actions";
 
+type UserForm = {
+	name: string;
+	email: string;
+	password: string;
+};
 const Registration = () => {
-	const [userData, setUserData] = useState<User>({
+	const [userData, setUserData] = useState<UserForm>({
 		name: '',
 		email: '',
 		password: '',
 	});
 	const [errors, setErrors] = useState<FormSubmitErrors>({});
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const handleChange = (e) => {
 		setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -25,7 +33,7 @@ const Registration = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!isDataValid<User, FormSubmitErrors>(userData, setErrors)) {
+		if (!isDataValid<UserForm, FormSubmitErrors>(userData, setErrors)) {
 			console.error('Invalid user data');
 			return;
 		}
@@ -40,6 +48,12 @@ const Registration = () => {
 			setErrors(newErr);
 			return;
 		}
+		dispatch(loginUserAction({
+			isAuth: true,
+			name: result.user.name,
+			email: result.user.name,
+			token: result.result } as User
+		));
 		navigate('/login');
 	};
 

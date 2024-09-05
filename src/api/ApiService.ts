@@ -1,12 +1,12 @@
 import { ApiResponse } from '../types/ApiResponse';
-import { User } from '../types/User';
 import { FormSubmitErrors } from '../types/FormSubmitErrors';
 import { Course } from '../types/Course';
+import {Author} from "../types/Author";
 
 const BASE_URL = 'http://localhost:4000';
 
 export const register = async (
-	userData: User,
+	userData: {name: string, email: string, password: string},
 	setErrors: (errors: FormSubmitErrors) => void
 ) => {
 	try {
@@ -28,7 +28,7 @@ export const register = async (
 };
 
 export const login = async (
-	userData: User,
+	userData:  {email: string, password: string},
 	setErrors: (errors: FormSubmitErrors) => void
 ) => {
 	try {
@@ -63,5 +63,22 @@ export const getCourses = async () => {
 		return result;
 	} catch (e) {
 		console.error('Courses fetching failed', e);
+	}
+};
+
+export const getAuthors = async () => {
+	try {
+		const response = await fetch(`${BASE_URL}/authors/all`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		const result: ApiResponse<Author[]> = await response.json();
+		console.log('Authors fetched', result);
+		return result;
+	} catch (e) {
+		console.error('Authors fetching failed', e);
 	}
 };

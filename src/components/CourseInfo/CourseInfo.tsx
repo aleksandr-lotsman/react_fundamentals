@@ -11,21 +11,18 @@ import { formatCreationDate } from '../../helpers/formatCreationDate';
 import './CourseInfo.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCoursesWithAuthorsNames } from '../../helpers/getCoursesWithAuthorsNames';
-import { Author } from '../../types/Author';
 import { useSelector } from 'react-redux';
 import { getCourses } from '../../store/courses/selectors';
-
-type Props = {
-	authorsList: Author[];
-};
+import {getAuthors} from "../../store/authors/selectors";
 
 const getCourse = (courseId: string, coursesList: Course[]): Course => {
 	return coursesList.find((course) => course.id === courseId);
 };
 
-const CourseInfo = ({ authorsList }: Props) => {
+const CourseInfo = () => {
 	const coursesFromDb = useSelector(getCourses);
-	const courses = getCoursesWithAuthorsNames(coursesFromDb, authorsList);
+	const authorsFromDb = useSelector(getAuthors)
+	const courses = getCoursesWithAuthorsNames(coursesFromDb, authorsFromDb);
 	const navigate = useNavigate();
 	const { courseId } = useParams();
 	const course: Course = getCourse(courseId, courses);
