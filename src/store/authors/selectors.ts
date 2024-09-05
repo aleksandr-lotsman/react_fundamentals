@@ -1,4 +1,4 @@
-import {Author} from "../../types/Author";
+import { Author } from '../../types/Author';
 
 type RootState = {
 	authors: Author[];
