@@ -11,11 +11,11 @@ import './CourseCard.css';
 import { Course } from '../../../../types/Course';
 import { useNavigate } from 'react-router-dom';
 
-import DeleteCourseIcon from './deleteCourse.svg'
-import UpdateCourseIcon from './updateCourse.svg'
+import DeleteCourseIcon from './deleteCourse.svg';
+import UpdateCourseIcon from './updateCourse.svg';
 
-import {useDispatch} from "react-redux";
-import {deleteCourseAction} from "../../../../store/courses/actions";
+import { useDispatch } from 'react-redux';
+import { deleteCourseAction } from '../../../../store/courses/actions';
 
 type Props = {
 	course: Course;
@@ -55,9 +55,7 @@ const CourseCard = ({ course }: Props) => {
 							icon={DeleteCourseIcon}
 							onClick={() => dispatch(deleteCourseAction(course.id))}
 						/>
-						<Button
-							icon={UpdateCourseIcon}
-						/>
+						<Button icon={UpdateCourseIcon} />
 					</div>
 				</div>
 			</div>

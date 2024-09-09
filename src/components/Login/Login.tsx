@@ -12,8 +12,8 @@ import './Login.css';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
-import {useDispatch} from "react-redux";
-import {loginUserAction} from "../../store/user/actions";
+import { useDispatch } from 'react-redux';
+import { loginUserAction } from '../../store/user/actions';
 
 type UserForm = {
 	email: string;
@@ -65,9 +65,9 @@ const Login = () => {
 			isAuth: true,
 			name: responseBody.user.name,
 			email: responseBody.user.email,
-			token: token
+			token: token,
 		};
-		dispatch(loginUserAction(user))
+		dispatch(loginUserAction(user));
 		localStorage.setItem('token', JSON.stringify(token));
 		navigate('/courses');
 	};
