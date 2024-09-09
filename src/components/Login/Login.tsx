@@ -12,6 +12,8 @@ import './Login.css';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
+import {useDispatch} from "react-redux";
+import {loginUserAction} from "../../store/user/actions";
 
 type UserForm = {
 	email: string;
@@ -26,6 +28,7 @@ const Login = () => {
 	});
 	const [errors, setErrors] = useState<FormSubmitErrors>({});
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (token) {
@@ -44,11 +47,11 @@ const Login = () => {
 			console.error('Invalid user data');
 			return;
 		}
-		const responseBody: ApiResponse = await apiService.login(
+		const responseBody: ApiResponse<string> = await apiService.login(
 			userData,
 			setErrors
 		);
-		if (!responseBody.successful && responseBody.errors) {
+		if (!responseBody.successful) {
 			const newErr = {};
 			responseBody.errors.forEach((msg) => {
 				const key = msg.match(/'([^']+)'/)[1];
@@ -58,9 +61,14 @@ const Login = () => {
 			return;
 		}
 		const token = responseBody.result;
-		const user: User = responseBody.user;
+		const user: User = {
+			isAuth: true,
+			name: responseBody.user.name,
+			email: responseBody.user.email,
+			token: token
+		};
+		dispatch(loginUserAction(user))
 		localStorage.setItem('token', JSON.stringify(token));
-		localStorage.setItem('name', user.name);
 		navigate('/courses');
 	};
 

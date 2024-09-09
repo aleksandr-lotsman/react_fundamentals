@@ -40,7 +40,7 @@ export const login = async (
 			},
 		});
 
-		const result: ApiResponse = await response.json();
+		const result: ApiResponse<string> = await response.json();
 		console.log('User logged in', result);
 		return result;
 	} catch (e) {
