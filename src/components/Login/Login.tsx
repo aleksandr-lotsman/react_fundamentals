@@ -13,7 +13,7 @@ import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../store/user/userSlice'
+import { loginUser } from '../../store/user/userSlice';
 
 import * as localStorage from '../../helpers/localStorage';
 
@@ -68,7 +68,7 @@ const Login = () => {
 			name: responseBody.user.name,
 			email: responseBody.user.email,
 			token: token,
-			role: ''
+			role: '',
 		};
 		localStorage.setToken(token);
 		dispatch(loginUser(user));

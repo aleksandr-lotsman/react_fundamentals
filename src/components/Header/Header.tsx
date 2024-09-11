@@ -12,7 +12,7 @@ import { getUserName } from '../../store/user/selectors';
 import { logoutUser } from '../../store/user/userSlice';
 
 import * as localStorage from '../../helpers/localStorage';
-import {AppDispatch} from "../../store";
+import { AppDispatch } from '../../store';
 
 const Header = () => {
 	const token = localStorage.getToken();

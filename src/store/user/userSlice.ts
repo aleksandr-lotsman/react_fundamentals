@@ -1,8 +1,8 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UserState } from '../../types/UserState';
 import * as apiService from '../../api/ApiService';
-import {User} from "../../types/User";
-import {ApiResponse} from "../../types/ApiResponse";
+import { User } from '../../types/User';
+import { ApiResponse } from '../../types/ApiResponse';
 import * as localStorage from '../../helpers/localStorage';
 
 const userInitialState: UserState = {
@@ -31,17 +31,14 @@ export const fetchUser = createAsyncThunk(
 	}
 );
 
-export const logoutUser = createAsyncThunk(
-	'users/logout',
-	async () => {
-		const response = await apiService.logOut(localStorage.getToken());
-		if (response) {
-			return;
-		} else {
-			console.error('Logout failed');
-		}
+export const logoutUser = createAsyncThunk('users/logout', async () => {
+	const response = await apiService.logOut(localStorage.getToken());
+	if (response) {
+		return;
+	} else {
+		console.error('Logout failed');
 	}
-);
+});
 
 const userSlice = createSlice({
 	name: 'user',
@@ -69,7 +66,7 @@ const userSlice = createSlice({
 		builder.addCase(logoutUser.fulfilled, () => {
 			return userInitialState;
 		});
-	}
+	},
 });
 
 export const { loginUser } = userSlice.actions;

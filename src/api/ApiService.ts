@@ -2,7 +2,7 @@ import { ApiResponse } from '../types/ApiResponse';
 import { FormSubmitErrors } from '../types/FormSubmitErrors';
 import { Course } from '../types/Course';
 import { Author } from '../types/Author';
-import {User} from "../types/User";
+import { User } from '../types/User';
 
 const BASE_URL = 'http://localhost:4000';
 
@@ -89,8 +89,8 @@ export const getUser = async (token: string) => {
 		const response = await fetch(`${BASE_URL}/users/me`, {
 			method: 'GET',
 			headers: {
-				'accept': '*/*',
-				Authorization: `Bearer ${token}`
+				accept: '*/*',
+				Authorization: `Bearer ${token}`,
 			},
 		});
 
@@ -100,24 +100,23 @@ export const getUser = async (token: string) => {
 	} catch (e) {
 		console.error('UserState fetching failed', e);
 	}
-}
+};
 
 export const logOut = async (token: string) => {
 	try {
 		const response = await fetch(`${BASE_URL}/logout`, {
 			method: 'DELETE',
 			headers: {
-				'accept': '*/*',
-				Authorization: `Bearer ${token}`
+				accept: '*/*',
+				Authorization: `Bearer ${token}`,
 			},
-		})
-		let result = false
+		});
+		let result = false;
 		if (response.ok) {
-			result = true
+			result = true;
 		}
 		return result;
 	} catch (e) {
 		console.error('UserState log out failed', e);
 	}
-}
-
+};
