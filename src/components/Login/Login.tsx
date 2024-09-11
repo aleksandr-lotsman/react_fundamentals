@@ -13,7 +13,7 @@ import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
 import { useDispatch } from 'react-redux';
-import { loginUserAction } from '../../store/user/actions';
+import { loginUser } from '../../store/user/userSlice';
 
 type UserForm = {
 	email: string;
@@ -67,7 +67,7 @@ const Login = () => {
 			email: responseBody.user.email,
 			token: token,
 		};
-		dispatch(loginUserAction(user));
+		dispatch(loginUser(user));
 		localStorage.setItem('token', JSON.stringify(token));
 		navigate('/courses');
 	};

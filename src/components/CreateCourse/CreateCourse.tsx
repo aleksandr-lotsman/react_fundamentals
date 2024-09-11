@@ -15,9 +15,9 @@ import { Author } from '../../types/Author';
 import { AuthorFormSubmitErrors } from '../../types/AuthorFormSubmitErrors';
 import { Textarea } from '../../common/Textarea';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewCourseAction } from '../../store/courses/actions';
 import { getAuthors } from '../../store/authors/selectors';
-import { addAuthorAction } from '../../store/authors/actions';
+import { addCourse } from '../../store/courses/coursesSlice';
+import { addAuthor } from '../../store/authors/authorsSlice';
 
 type CourseFormData = {
 	title: string;
@@ -77,7 +77,7 @@ const CreateCourse = () => {
 			duration: courseData.duration,
 			authors: addedAuthors.map((author) => author.id),
 		};
-		dispatch(addNewCourseAction(newCourse));
+		dispatch(addCourse(newCourse));
 		navigate('/courses');
 	};
 
@@ -97,7 +97,7 @@ const CreateCourse = () => {
 			name: authorData.name,
 		};
 		setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
-		dispatch(addAuthorAction(newAuthor));
+		dispatch(addAuthor(newAuthor));
 	};
 
 	const getAuthorsItems = (authors: Author[], isAddedToCourse: boolean) => {

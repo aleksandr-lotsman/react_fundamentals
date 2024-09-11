@@ -9,7 +9,7 @@ import { Button } from '../../common/Button';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { useDispatch } from 'react-redux';
-import { loginUserAction } from '../../store/user/actions';
+import { loginUser } from '../../store/user/userSlice';
 
 type UserForm = {
 	name: string;
@@ -49,7 +49,7 @@ const Registration = () => {
 			return;
 		}
 		dispatch(
-			loginUserAction({
+			loginUser({
 				isAuth: true,
 				name: result.user.name,
 				email: result.user.name,

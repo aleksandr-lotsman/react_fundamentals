@@ -9,7 +9,7 @@ import { BUTTON_TEXT_LOGOUT } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserName } from '../../store/user/selectors';
-import { logoutUserAction } from '../../store/user/actions';
+import { logoutUser } from '../../store/user/userSlice';
 
 const Header = () => {
 	const token = localStorage.getItem('token');
@@ -18,7 +18,7 @@ const Header = () => {
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
-		dispatch(logoutUserAction());
+		dispatch(logoutUser());
 		localStorage.removeItem('token');
 		navigate('/login');
 	};

@@ -15,7 +15,7 @@ import DeleteCourseIcon from './deleteCourse.svg';
 import UpdateCourseIcon from './updateCourse.svg';
 
 import { useDispatch } from 'react-redux';
-import { deleteCourseAction } from '../../../../store/courses/actions';
+import { deleteCourse } from '../../../../store/courses/coursesSlice';
 
 type Props = {
 	course: Course;
@@ -53,7 +53,7 @@ const CourseCard = ({ course }: Props) => {
 						/>
 						<Button
 							icon={DeleteCourseIcon}
-							onClick={() => dispatch(deleteCourseAction(course.id))}
+							onClick={() => dispatch(deleteCourse(course.id))}
 						/>
 						<Button icon={UpdateCourseIcon} />
 					</div>
