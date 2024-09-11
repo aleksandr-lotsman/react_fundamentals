@@ -1,7 +1,8 @@
-import { User } from '../../types/User';
+import { UserState } from '../../types/UserState';
 
 type RootState = {
-	user: User;
+	user: UserState;
 };
 
 export const getUserName = (state: RootState) => state.user.name;
+export const getUserRole = (state: RootState) => state.user.role;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../../common/Button';
 
-import { BUTTON_TEXT_SHOW_COURSE } from '../../../../constants';
+import {ADMIN_ROLE, BUTTON_TEXT_SHOW_COURSE} from '../../../../constants';
 
 import { getCourseDuration } from '../../../../helpers/getCourseDuration';
 import { formatCreationDate } from '../../../../helpers/formatCreationDate';
@@ -14,8 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import DeleteCourseIcon from './deleteCourse.svg';
 import UpdateCourseIcon from './updateCourse.svg';
 
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { deleteCourse } from '../../../../store/courses/coursesSlice';
+import {getUserRole} from "../../../../store/user/selectors";
 
 type Props = {
 	course: Course;
@@ -23,6 +24,7 @@ type Props = {
 const CourseCard = ({ course }: Props) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const userRole = useSelector(getUserRole);
 	return (
 		<div className='course-card'>
 			<h2>{course.title}</h2>
@@ -51,11 +53,15 @@ const CourseCard = ({ course }: Props) => {
 							text={BUTTON_TEXT_SHOW_COURSE}
 							onClick={() => navigate(`/courses/${course.id}`)}
 						/>
-						<Button
-							icon={DeleteCourseIcon}
-							onClick={() => dispatch(deleteCourse(course.id))}
-						/>
-						<Button icon={UpdateCourseIcon} />
+						{userRole === ADMIN_ROLE &&
+                            <>
+                                <Button
+                                    icon={DeleteCourseIcon}
+                                    onClick={() => dispatch(deleteCourse(course.id))}
+                                />
+                                <Button icon={UpdateCourseIcon} />
+                            </>
+						}
 					</div>
 				</div>
 			</div>

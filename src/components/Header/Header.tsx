@@ -11,11 +11,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserName } from '../../store/user/selectors';
 import { logoutUser } from '../../store/user/userSlice';
 
+import * as localStorage from '../../helpers/localStorage';
+import {AppDispatch} from "../../store";
+
 const Header = () => {
-	const token = localStorage.getItem('token');
+	const token = localStorage.getToken();
 	const navigate = useNavigate();
 	const name = useSelector(getUserName);
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 
 	const handleLogout = () => {
 		dispatch(logoutUser());

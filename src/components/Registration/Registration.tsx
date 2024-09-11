@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Input } from '../../common/Input';
-import { User } from '../../types/User';
 import { FormSubmitErrors } from '../../types/FormSubmitErrors';
 
 import './Registration.css';
@@ -9,7 +8,6 @@ import { Button } from '../../common/Button';
 import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../store/user/userSlice';
 
 type UserForm = {
 	name: string;
@@ -48,14 +46,6 @@ const Registration = () => {
 			setErrors(newErr);
 			return;
 		}
-		dispatch(
-			loginUser({
-				isAuth: true,
-				name: result.user.name,
-				email: result.user.name,
-				token: result.result,
-			} as User)
-		);
 		navigate('/login');
 	};
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { User } from '../../types/User';
+import { UserState } from '../../types/UserState';
 import { FormSubmitErrors } from '../../types/FormSubmitErrors';
 
 import { Input } from '../../common/Input';
@@ -13,7 +13,9 @@ import { isDataValid } from '../../helpers/isDataValid';
 import * as apiService from '../../api/ApiService';
 import { ApiResponse } from '../../types/ApiResponse';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../store/user/userSlice';
+import { loginUser } from '../../store/user/userSlice'
+
+import * as localStorage from '../../helpers/localStorage';
 
 type UserForm = {
 	email: string;
@@ -21,7 +23,7 @@ type UserForm = {
 };
 
 const Login = () => {
-	const token = JSON.parse(localStorage.getItem('token'));
+	const token = JSON.parse(localStorage.getToken());
 	const [userData, setUserData] = useState<UserForm>({
 		email: '',
 		password: '',
@@ -60,15 +62,16 @@ const Login = () => {
 			setErrors(newErr);
 			return;
 		}
-		const token = responseBody.result;
-		const user: User = {
+		const token: string = responseBody.result.replace('Bearer ', '');
+		const user: UserState = {
 			isAuth: true,
 			name: responseBody.user.name,
 			email: responseBody.user.email,
 			token: token,
+			role: ''
 		};
+		localStorage.setToken(token);
 		dispatch(loginUser(user));
-		localStorage.setItem('token', JSON.stringify(token));
 		navigate('/courses');
 	};
 

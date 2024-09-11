@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from '../../common/Input';
-import './CreateCourse.css';
+import './CourseForm.css';
 import { Button } from '../../common/Button';
 import AuthorItem from './components/AuthorItem/AuthorItem';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ type AuthorFormData = {
 
 const minSymbolsLength = 2;
 
-const CreateCourse = () => {
+const CourseForm = () => {
 	const authorsFromDb = useSelector(getAuthors);
 	const navigate = useNavigate();
 	const [courseData, setCourseData] = useState<CourseFormData>({
@@ -200,4 +200,4 @@ const CreateCourse = () => {
 	);
 };
 
-export default CreateCourse;
+export default CourseForm;
